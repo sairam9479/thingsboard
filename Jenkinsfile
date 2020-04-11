@@ -3,7 +3,7 @@ node {
 	env.commitMsg= sh (returnStdout: true,script: "git log -1").trim()
  	env.branchname= sh (returnStdout: true,script: "git name-rev --name-only HEAD").trim()
 	notifyCheckoutSuccessful()
-    def mvnHome = tool name: 'Maven'
+        def mvnHome = tool name: 'Maven'
 
     /* Set JAVA_HOME, and special PATH variables. */
     List Env = [
@@ -48,21 +48,21 @@ node {
 			}
         }    
 	}
-def notifyInitialize() {
+      def notifyInitialize() {
         slackSend ("Initialized - ${env.JOB_NAME} ${env.BUILD_NUMBER} (<${env.BUILD_URL}|Open>)"
         channel: "gv-cicd-commits"
         tocken: "kwnUv7Bb1sHaOcD2lRkWstmd"
-def notifyBuild() {
+      def notifyBuild() {
         slackSend ("Built Images - ${env.JOB_NAME} ${env.BUILD_NUMBER} (<${env.BUILD_URL}|Open>)"
         channel: "gv-cicd-builds"
         tocken: "6gcqDQwcSU3JzdO34ZySoB5Y"   
     }
-def notifyTest() {
+      def notifyTest() {
         slackSend ("Test - ${env.JOB_NAME} ${env.BUILD_NUMBER} (<${env.BUILD_URL}|Open>)"
         channel: "gv-cicd-commits"
         tocken: "v4BpmVKeFOuTI731evpDPozf"   
     }
-def notifyDockerDeploy() {
+      def notifyDockerDeploy() {
             slackSend (color: "good", message: "Latest docker images deployed to 192.168.7.228:5000", channel: "gv-cicd-deployments", tocken: "8VGlLZj1K7pctnppdATZluTy")
         }
 }
