@@ -18,10 +18,7 @@ node {
 				echo "M2_HOME = ${M2_HOME}"
 			'''
 		}
-    def notifyInitialize() {
-        slackSend "Initialized - ${env.JOB_NAME} ${env.BUILD_NUMBER} (<${env.BUILD_URL}|Open>)"
-        channel: "gv-cicd-commits"
-        tocken: "kwnUv7Bb1sHaOcD2lRkWstmd"   
+       
     }
 		stage ('Build') {
 			try {
@@ -31,11 +28,7 @@ node {
 				currentBuild.result = 'FAILURE'
 			}
 		}
-        def notifyBuild() {
-        slackSend "Built Images - ${env.JOB_NAME} ${env.BUILD_NUMBER} (<${env.BUILD_URL}|Open>)"
-        channel: "gv-cicd-builds"
-        tocken: "6gcqDQwcSU3JzdO34ZySoB5Y"   
-    }
+        
 		
 		stage ('Test') {
 			try {
@@ -45,11 +38,7 @@ node {
 				currentBuild.result = 'FAILURE'
 			}
 		}
-        def notifyTest() {
-        slackSend "Test - ${env.JOB_NAME} ${env.BUILD_NUMBER} (<${env.BUILD_URL}|Open>)"
-        channel: "gv-cicd-commits"
-        tocken: "v4BpmVKeFOuTI731evpDPozf"   
-    }
+        
 		stage ('Docker Deploy') {
 			try {
 				sh "mvn clean pre-integration-test -DskipTests -Dlicense.skip -Ppush-docker-image -Ddockerfile.skip=false -Ddocker.repo=192.168.7.228:5000/corinexgv"         
@@ -57,15 +46,26 @@ node {
 			} catch (e) {
 				currentBuild.result = 'FAILURE'
 			}
-        }
-        def notifyDockerDeploy() {
-            slackSend (color: "good", message: "Latest docker images deployed to 192.168.7.228:5000", channel: "gv-cicd-deployments", tocken: "8VGlLZj1K7pctnppdATZluTy")
-        }      
-	
+        }    
 	}
 }
 
-
-
+def notifyInitialize() {
+        slackSend "Initialized - ${env.JOB_NAME} ${env.BUILD_NUMBER} (<${env.BUILD_URL}|Open>)"
+        channel: "gv-cicd-commits"
+        tocken: "kwnUv7Bb1sHaOcD2lRkWstmd"
+def notifyBuild() {
+        slackSend "Built Images - ${env.JOB_NAME} ${env.BUILD_NUMBER} (<${env.BUILD_URL}|Open>)"
+        channel: "gv-cicd-builds"
+        tocken: "6gcqDQwcSU3JzdO34ZySoB5Y"   
+    }
+def notifyTest() {
+        slackSend "Test - ${env.JOB_NAME} ${env.BUILD_NUMBER} (<${env.BUILD_URL}|Open>)"
+        channel: "gv-cicd-commits"
+        tocken: "v4BpmVKeFOuTI731evpDPozf"   
+    }
+def notifyDockerDeploy() {
+            slackSend (color: "good", message: "Latest docker images deployed to 192.168.7.228:5000", channel: "gv-cicd-deployments", tocken: "8VGlLZj1K7pctnppdATZluTy")
+        }
 
 
