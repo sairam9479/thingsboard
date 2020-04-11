@@ -48,8 +48,6 @@ node {
 			}
         }    
 	}
-}
-
 def notifyInitialize() {
         slackSend "Initialized - ${env.JOB_NAME} ${env.BUILD_NUMBER} (<${env.BUILD_URL}|Open>)"
         channel: "gv-cicd-commits"
@@ -67,5 +65,6 @@ def notifyTest() {
 def notifyDockerDeploy() {
             slackSend (color: "good", message: "Latest docker images deployed to 192.168.7.228:5000", channel: "gv-cicd-deployments", tocken: "8VGlLZj1K7pctnppdATZluTy")
         }
+}
 
 
