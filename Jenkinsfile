@@ -49,16 +49,16 @@ node {
         }    
 	}
 def notifyInitialize() {
-        slackSend "Initialized - ${env.JOB_NAME} ${env.BUILD_NUMBER} (<${env.BUILD_URL}|Open>)"
+        slackSend ("Initialized - ${env.JOB_NAME} ${env.BUILD_NUMBER} (<${env.BUILD_URL}|Open>)"
         channel: "gv-cicd-commits"
         tocken: "kwnUv7Bb1sHaOcD2lRkWstmd"
 def notifyBuild() {
-        slackSend "Built Images - ${env.JOB_NAME} ${env.BUILD_NUMBER} (<${env.BUILD_URL}|Open>)"
+        slackSend ("Built Images - ${env.JOB_NAME} ${env.BUILD_NUMBER} (<${env.BUILD_URL}|Open>)"
         channel: "gv-cicd-builds"
         tocken: "6gcqDQwcSU3JzdO34ZySoB5Y"   
     }
 def notifyTest() {
-        slackSend "Test - ${env.JOB_NAME} ${env.BUILD_NUMBER} (<${env.BUILD_URL}|Open>)"
+        slackSend ("Test - ${env.JOB_NAME} ${env.BUILD_NUMBER} (<${env.BUILD_URL}|Open>)"
         channel: "gv-cicd-commits"
         tocken: "v4BpmVKeFOuTI731evpDPozf"   
     }
