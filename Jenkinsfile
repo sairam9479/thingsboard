@@ -23,7 +23,7 @@ node {
 		stage ('Build') {
 			try {
 				sh 'mvn clean install -Dlicense.skip -DskipTests'
-                mvn clean install -DskipTests=true -Ddockerfile.skip=false -Dlicense.skip=true -DblackBoxTests.skip=true
+                                sh 'mvn clean install -DskipTests=true -Ddockerfile.skip=false -Dlicense.skip=true -DblackBoxTests.skip=true'
 			} catch (e) {
 				currentBuild.result = 'FAILURE'
 			}
