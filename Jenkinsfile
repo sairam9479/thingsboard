@@ -1,15 +1,12 @@
-pipeline
-dir('docker') {
-                    sh 'pwd'
-                } {
+pipeline {
 	
    	agent any
 	stages {
                      
              stage ('deploy') {
             steps{
-		    
-	        sh 'pwd'
+		    dir('docker')
+		    sh 'pwd'
                 sh 'bash ./docker-start-services.sh' 
 		    }
         }
