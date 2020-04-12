@@ -10,7 +10,7 @@ pipeline {
 	{
 		sh 'pwd'
 	}
-                sh 'bash docker/docker-start-services.sh ' 
+                sh 'bash docker-start-services.sh ' 
 		    }
         }
 		
