@@ -4,8 +4,7 @@ pipeline {
 	    
 		stage ('deploy') {
             steps{
-		sh 'cd docker'
-                sh 'bash docker-start-services.sh ' 
+                sh 'bash docker/docker-start-services.sh ' 
 		    }
         }
 		
