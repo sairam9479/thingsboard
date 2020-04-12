@@ -1,11 +1,13 @@
 pipeline {
-	dir ('docker')
-	{
-		sh 'pwd'
-	}
+	
    	agent any
 	stages {
-	        
+	        stage('Change working directory...') {
+                        steps {
+                dir('docker') {
+                    sh 'pwd'
+                }
+
 		
         stage ('deploy') {
             steps{
