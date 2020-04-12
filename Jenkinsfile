@@ -10,7 +10,7 @@ pipeline {
              stage ('deploy') {
             steps{
 		sh 'pwd'
-                sh 'bash ./docker-start-services.sh' 
+		    sh 'bash ${WORKSPACE}/docker-start-services.sh' 
 		    }
         }
 		
