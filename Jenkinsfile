@@ -51,6 +51,7 @@ node {
       def notifyInitialize() {
         slackSend ("Initialized - ${env.JOB_NAME} ${env.BUILD_NUMBER} (<${env.BUILD_URL}|Open>", channel: "#gv-cicd-commits",
         tocken: "kwnUv7Bb1sHaOcD2lRkWstmd")
+      }
       def notifyBuild() {
         slackSend ("Built Images - ${env.JOB_NAME} ${env.BUILD_NUMBER} (<${env.BUILD_URL}|Open>",
         channel: "#gv-cicd-builds",
