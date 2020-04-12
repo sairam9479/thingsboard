@@ -12,7 +12,7 @@ pipeline {
         stage ('deploy') {
             steps{
 	        
-                sh 'bash docker-start-services.sh' 
+                sh 'bash ./docker-start-services.sh' 
 		    }
         }
 		
