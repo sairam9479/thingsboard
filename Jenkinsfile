@@ -10,7 +10,7 @@ pipeline {
 		
        stage ('docker build & push') {
 	    steps{
-                sh "mvn clean pre-integration-test -DskipTests -Dlicense.skip -Ppush-docker-image -Ddockerfile.skip=false "
+                sh "mvn clean pre-integration-test -DskipTests -Dlicense.skip -Ddockerfile.skip=false "
             }
 		}
 		
